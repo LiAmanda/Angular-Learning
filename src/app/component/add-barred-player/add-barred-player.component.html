@@ -1,0 +1,27 @@
+<div>
+    <h3>Add Barred Player</h3>
+    <form #addBarredPlayerForm="ngForm" (ngSubmit)="add()">
+        <fieldset ngModelGroup="barredPlayer">
+            <div><span>Name: </span>
+              <input name="FamilyName" [(ngModel)]="player.FamilyName"/>
+              <input name="GivenName"  [(ngModel)]="player.GivenName" />
+            </div>
+            <div><span>Wynn ID: </span><input name="WynnId"  [(ngModel)]="player.WynnId"/></div>
+            <div><span>Primary ID: </span><input name="PrimaryID"  [(ngModel)]="player.PrimaryID" /></div>
+            <div><span>Gender: </span><input name="Gender"  [(ngModel)]="player.Gender" /></div>
+            <div><span>Birthday: </span><input name="Birthday"  [(ngModel)]="player.Birthday"/></div>
+            <div><span>Country of Nationality: </span><input name="CountryOfNational"  [(ngModel)]="player.CountryOfNational"/></div>
+            <div><span>Barred Scope: </span>Global</div>
+            <div><span>Barred Start Date: </span><input name="BarredStartTime"  [(ngModel)]="player.BarredStartTime" /></div>
+            <div><span>Barred End Date: </span><input name="BarredEndTime"  [(ngModel)]="player.BarredEndTime" /></div>
+            <div><span>Barred Reason: </span><input name="Reason"  [(ngModel)]="player.Reason" /></div>
+            <div><span>Barred Comments: </span><input name="Comments"  [(ngModel)]="player.Comments" /></div>
+            <div><span>Barred By: </span><input name="BarredBy"  [(ngModel)]="player.BarredBy"/></div>
+            <div><span>Barred At: </span><input name="BarredAt"  [(ngModel)]="player.BarredAt"/></div>
+            <div><span>Barred Date: </span><input name="ModifiedOn"  [(ngModel)]="player.ModifiedOn"/></div>
+            <div><span>Last Modified Date: </span><input name="ModifiedOn"  [(ngModel)]="player.ModifiedOn"/></div>
+        </fieldset>
+        <button (click)="goBack()">Cancel</button>
+        <button type="submit">Add</button>
+        </form>
+  </div>

@@ -1,0 +1,36 @@
+<div class="menuPanel">
+  <div class="menu-item"><a routerLink="/barredHistory">Alert</a></div>
+  <div>
+    <div class="menu-item"><a routerLink="/players">Barred Player</a>
+      <svg focusable="true" viewBox="0 0 24 24" (click)="subMenuShow('barredNode')" [class.folded]="barredSubMenuShow == true">
+        <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
+      </svg>
+    </div>
+    <div *ngIf="barredSubMenuShow == true">
+      <div class="sub-menu"><a routerLink="/barredHistory">Barred History</a></div>
+    </div>
+  </div>
+  <div>
+    <div class="menu-item"><a routerLink="/barredHistory">Flaged Player</a>
+      <svg focusable="true" viewBox="0 0 24 24" (click)="subMenuShow('flaggedNode')" [class.folded]="flaggedSubMenuShow == true">
+        <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
+      </svg>
+    </div>
+    <div *ngIf="flaggedSubMenuShow == true">
+      <div class="sub-menu"><a  routerLink="/barredHistory">Flaged History</a></div>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <div class="menu-item"><a routerLink="/barredHistory">Setting</a>
+      <svg focusable="true" viewBox="0 0 24 24" (click)="subMenuShow('settingNode')" [class.folded]="settingSubMenuShow == true">
+        <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
+      </svg>
+    </div>
+    <div *ngIf="settingSubMenuShow == true">
+      <div class="sub-menu"><a routerLink="/barredHistory">Barred Reason</a></div>
+      <div class="sub-menu"><a routerLink="/barredHistory">Barred Duration</a></div>
+    </div>
+  </div>
+</div>
+

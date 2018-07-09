@@ -1,0 +1,27 @@
+<h4>Barred Player Details</h4>
+<div *ngIf="player" class="barredPlayerDetail">
+  <h5>Player Information</h5>
+  <div><span>Name: </span>{{player.FamilyName}}{{player.GivenName}}</div>
+  <div><span>Wynn ID: </span>{{player.WynnId}}</div>
+  <div><span>Primary ID: </span>{{player.PrimaryID}}</div>
+  <div><span>Gender: </span>{{player.Gender}}</div>
+  <div><span>Birthday: </span>{{player.Birthday}}</div>
+  <div><span>Country of Nationality: </span>{{player.CountryOfNational}}</div>
+  <h5>Basic Information</h5>
+  <div><span>Barred ID: </span>{{player.BarredID}}</div>
+  <div><span>Barred Scope: </span>Global</div>
+  <div><span>Barred Start Date: </span>{{player.BarredStartTime}}</div>
+  <div><span>Barred End Date: </span>{{player.BarredEndTime}}</div>
+  <div><span>Barred Reason: </span>{{player.Reason}}</div>
+  <div><span>Barred Comments: </span>{{player.Comments}}</div>
+  <div><span>Barred By: </span>{{player.BarredBy}}</div>
+  <div><span>Barred At: </span>{{player.BarredAt}}</div>
+  <div><span>Barred Date: </span>{{player.ModifiedOn}}</div>
+  <div><span>Last Modified Date: </span>{{player.ModifiedOn}}</div>
+  <div class="buttonGroup">
+    <button class="button" (click)="goBack()">Back</button>
+    <button class="button" (click)="goBack()">View Barred History</button>
+    <button class="button" (click)="delete(player)">Remove Barred Player</button>
+    <button class="button" routerLink="/editPlayer/{{player.id}}">Edit</button>
+  </div>
+</div>

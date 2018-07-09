@@ -1,0 +1,87 @@
+<div class="searchBar">
+    <form>
+        <div class="searchBox">
+            <div class="input-group">
+                <input name="term" type="text" [(ngModel)]="term" class="form-control" placeholder="Please input the Barred ID/Name/Wynn ID to search player..."/>
+            </div>
+            <input type="checkbox" name="Reviewed" value="true">Reviewed
+            <input type="checkbox" name="Reviewed" value="false"/>Unreviewed
+            <button class="button" (click)="search()">Search</button>
+            <button class="button" (click)="reset()">Reset</button>
+        </div>
+    </form>
+</div>
+
+<app-tool-bar></app-tool-bar>
+<div class="cardList">
+    <div *ngFor="let player of players" class="card">
+        <div class="playerInfo">
+            <div class="playerImage">
+                <img src="{{player.Photo}}"/>
+            </div>
+            <div>
+                <div><span>{{player.FamilyName+" "+player.GivenName}}</span></div>
+                <div><span>{{player.WynnId}}</span></div>
+                <div><span>{{player.Birthday}}</span></div>
+                <div><span>{{player.PrimaryID}}</span></div>
+            </div>
+        </div>
+        <div class="barredInfo">
+            <div>Barred Info.</div>
+            <div><span>ID</span>{{player.BarredID}}</div>
+            <div><span>Scope</span>{{player.CountryOfNational}}</div>
+            <div><span>Start Date</span>{{player.BarredStartTime}}</div>
+            <div><span>End Date</span>{{player.BarredEndTime}}</div>
+        </div>
+        <div>
+            <a routerLink="/editPlayer/{{player.id}}">
+                <span>Edit</span>
+            </a>
+            <a (click)="delete(player)">
+                Delete
+            </a>
+            <a routerLink="/detail/{{player.id}}">
+            <span>more</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- <table class="table">
+    <thead>
+        <tr>
+            <th class="col-md-4">Barred ID</th>
+            <th>Barred Start Time</th>
+            <th>Barred End Time</th>
+            <th>WynnId</th>
+            <th>Family Name</th>
+            <th>Given Name</th>
+            <th>Photo</th>
+            <th>Gender</th>
+            <th>Birthday</th>
+            <th>Country Of National</th>
+            <th>Primary ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let player of players">
+            <td>{{player.BarredID}}</td>
+            <td>{{player.BarredStartTime}}</td>
+            <td>{{player.BarredEndTime}}</td>
+            <td>{{player.WynnId}}</td>
+            <td>{{player.FamilyName}}</td>
+            <td>{{player.GivenName}}</td>
+            <td>{{player.Photo}}</td>
+            <td>{{player.Gender}}</td>
+            <td>{{player.Birthday}}</td>
+            <td>{{player.CountryOfNational}}</td>
+            <td>{{player.PrimaryID}}</td>
+            <td>
+              <a routerLink="/detail/{{player.id}}">
+                <span>detail</span>
+              </a>
+          </td>
+        </tr>
+    </tbody>
+</table> -->

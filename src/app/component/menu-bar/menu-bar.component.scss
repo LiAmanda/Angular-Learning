@@ -1,0 +1,37 @@
+.menuPanel{
+    padding-left: 20px;
+    font-weight: bold;
+    padding-top: 30px;
+    .menu-item{
+        display: flex;
+        align-items: center;
+        height: 40px;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .sub-menu{
+        height: 40px;
+        align-items: center;
+        display: flex;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+}
+
+svg{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.folded
+{
+    animation: arrow-rotate;
+    animation-fill-mode: forwards;
+}
+
+@keyframes arrow-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(90deg); }
+  }
