@@ -15,6 +15,8 @@ import { ToolBarComponent } from './component/tool-bar/tool-bar.component';
 import { AddBarredPlayerComponent } from './component/add-barred-player/add-barred-player.component';
 import { BarredPlayerHistoryComponent } from './component/barred-player-history/barred-player-history.component';
 import { WebSocketComponent } from './component/web-socket/web-socket.component';
+import { StoreModule} from '@ngrx/store'
+import { reducer}  from '../app/reducers/barred-player.reducer'
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { WebSocketComponent } from './component/web-socket/web-socket.component'
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule.forRoot({barredPlayer: reducer}),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation:false}
     )

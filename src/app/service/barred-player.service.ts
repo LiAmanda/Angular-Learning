@@ -24,6 +24,7 @@ export class BarredPlayerService {
 
   getPlayers(): Observable<BarredPlayer[]> {
     this.messageService.add('BarredPlayerService: fetch data');
+    debugger;
     return this.http.get<BarredPlayer[]>(this.barredPlayersUrl).pipe(
       tap(players => this.log(`fetched players`)),
       catchError(this.handleError('getBarredPlayers', []))
