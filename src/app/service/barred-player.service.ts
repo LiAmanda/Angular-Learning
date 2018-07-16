@@ -24,11 +24,14 @@ export class BarredPlayerService {
 
   getPlayers(): Observable<BarredPlayer[]> {
     this.messageService.add('BarredPlayerService: fetch data');
-    debugger;
+    // const model = this.http.get<BarredPlayer[]>(this.barredPlayersUrl);
+    // debugger;
+    // return model;
+
     return this.http.get<BarredPlayer[]>(this.barredPlayersUrl).pipe(
       tap(players => this.log(`fetched players`)),
       catchError(this.handleError('getBarredPlayers', []))
-    );
+    )
   }
 
   searchPlayers(term: string): Observable<BarredPlayer[]>{
@@ -49,7 +52,8 @@ export class BarredPlayerService {
     this.messageService.add(`BarredPlayerService: fetched player id=${id}`);
     return this.http.get<BarredPlayer>(url).pipe(
       tap(_ => this.log(`fetch player id = ${id}`)),
-      catchError(this.handleError<BarredPlayer>(`getPlayer id=${id}`))
+      catchError(this.handleError<BarredPlayer>(`getPlayer id=${id}`)),
+      
     )
   }
 

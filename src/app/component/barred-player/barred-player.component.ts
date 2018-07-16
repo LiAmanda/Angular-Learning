@@ -1,60 +1,62 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import {BarredPlayer} from '../../model/barredPlayer';
 import {BarredPlayerService} from '../../service/barred-player.service';
-import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store'
+import {of, Observable} from 'rxjs';
+import {Store, select} from '@ngrx/store'
 import {AppState} from '../../app.state'
-import { LoadBarredPlayerSuccessful } from '../../actions/barred-players.action';
-import { async } from '../../../../node_modules/@types/q';
+import { LoadBarredPlayerSuccessful, AddBarredPlayer } from '../../actions/barred-players.action';
 import { catchError, map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { log } from 'util';
 
 @Component({
   selector: 'app-barred-player',
   templateUrl: './barred-player.component.html',
   styleUrls: ['./barred-player.component.css']
 })
-export class BarredPlayerComponent implements OnInit, OnDestroy{
-  
-  ngOnDestroy(): void {
-    console.log("Method not implemented.");
-  }
+export class BarredPlayerComponent implements OnInit{
   
   players : Observable<BarredPlayer[]>;
-  // term: string;
+  term : string;
   
-  // constructor(private barredPlayerService: BarredPlayerService) {
-
-  // }
-
-  // Section 2
   constructor(private store: Store<AppState>, private barredPlayerService: BarredPlayerService) { 
-    this.players = store.select('barredPlayers');
-    console.log('this is constructor')
+    this.players = store.select('barredPlayer');
+    debugger;
   }
   
   ngOnInit() {
-    // this.term="";
-    console.log('this is ngOnInit');
+    this.term="";
     this.getPlayers();
-    
   }
 
   getPlayers(): void {
-    this.barredPlayerService.getPlayers()
-    .pipe(
-      map((players: BarredPlayer[]) => new LoadBarredPlayerSuccessful(players))
-    )
+    this.barredPlayerService.getPlayers().subscribe((values) => this.store.dispatch(new LoadBarredPlayerSuccessful(values as BarredPlayer[]) ));
   };
 
-  // search(): void {
-  //   debugger;
-  //   if(this.term.trim()){
-  //     this.barredPlayerService.searchPlayers(this.term).subscribe(barredPlayers => this.players = barredPlayers);
-  //   }
-  //   else{
-  //     this.getPlayers();
-  //   }
-  // }
+  private handleError<T> (operation = 'operation', result?: T){
+    return (error:any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    }
+  }
+
+  search(): void {
+    if(this.term.trim()){
+      debugger
+      const newPlayers = this.store.select('barredPlayer').pipe(map(x => {
+        if(x && x.length > 0) {
+          x = x.filter(y => y.id == this.term.trim())
+        }
+
+        return x;
+      }));
+      
+      newPlayers.subscribe(x => console.log(x))
+      this.players = newPlayers;
+    }
+    else{
+      this.players = this.store.select('barredPlayer');
+    }
+  }
 
   // reset(){
   //   this.getPlayers();
@@ -64,7 +66,4 @@ export class BarredPlayerComponent implements OnInit, OnDestroy{
   //   this.players = this.players.filter(h => h !== player);
   //   this.barredPlayerService.deletePlayer(player).subscribe();
   // }
-
-
-
 }

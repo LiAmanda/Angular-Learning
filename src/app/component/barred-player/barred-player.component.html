@@ -13,8 +13,9 @@
 </div>
 
 <app-tool-bar></app-tool-bar>
+
 <div class="cardList">
-    <div *ngFor="let player of players" class="card">
+    <div *ngFor="let player of players | async" class="card">
         <div class="playerInfo">
             <div class="playerImage">
                 <img src="{{player.Photo}}"/>

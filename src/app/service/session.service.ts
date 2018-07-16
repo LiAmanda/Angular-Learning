@@ -15,7 +15,7 @@ export class SessionService {
   private timeoutId: any;
 
   public get(key:string):any{
-    console.debug('begin get(), key is %s', key);
+    //console.debug('begin get(), key is %s', key);
     if(has(this.json, key)){
 
     }
